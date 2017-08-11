@@ -1,0 +1,51 @@
+app-toolbar{
+    background-image: url('http://apiv2.gn7logistic.com:3000/images/background/header-bg.png') !important;
+    background-size: cover !important;
+    background-color: #EC407A !important;
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+app-toolbar .md-toolbar-tools {
+    max-height: initial;
+    height: initial;
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+}
+
+app-toolbar .toolbar-section{
+    background-color: rgb(255,255,255);
+    padding-left: 32px;
+    font-size: 16px;
+    line-height: 44px;
+}
+
+section {
+    margin: 16px 32px;
+    padding: 16px;
+    background-color: rgb(255,255,255);
+}
+
+fieldset {    
+    margin: 8px;
+    padding: 8px;
+}
+
+.col-form-label {    
+    text-align: right;
+}
+
+button.icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+/* input.ng-invalid.ng-touched {
+    border-left: 2px solid red;
+} */

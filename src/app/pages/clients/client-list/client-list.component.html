@@ -1,0 +1,22 @@
+<app-toolbar class="large-toolbar">
+  <div class="md-toolbar-tools">
+      <i class="material-icons light-soft">person</i>
+      <span class="light-soft">Clients</span>
+
+      <div class="flex"></div>      
+      
+      <button type="button" class="btn btn-secondary btn-lg" routerLink="/dashboard/client/form">ADD NEW CLIENT</button>      
+  </div>
+</app-toolbar>
+
+<section>  
+      <ngx-datatable class="material" 
+        [rows]="rows"
+        [loadingIndicator]="loadingIndicator"
+        [columns]="columns"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="'auto'">
+      </ngx-datatable>    
+</section>

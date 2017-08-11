@@ -1,0 +1,34 @@
+<div class="dashboard layout-row">
+    <app-sidenav class="md-closed md-locked-open">
+    </app-sidenav>
+
+    <div class="wrapper">
+        <app-toolbar>
+            <div class="md-toolbar-tools">
+                <button class="side-nav-toggle" (click)="toggleSideNav()">
+                    <i class="material-icons" title="Show navigation">menu</i>
+                </button>
+                <span>Internovam</span>
+
+                <div class="flex"></div>
+                
+                <button class="btn btn-outline-secondary btn-lg" (click)="logOut()">SALIR</button>
+            </div>
+        </app-toolbar>
+
+        <div class="content-wrapper">
+            <div class="main-content">
+                <router-outlet></router-outlet>
+            </div>
+
+            <div class="footer-content">
+                <div id="license-footer">
+                Internovam ©2002–2017.
+                Code licensed under the <a ng-href="./license" class="md-accent" href="./license">MIT License</a>.              
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div backdrop></div>
+</div>
