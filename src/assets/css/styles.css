@@ -100,3 +100,21 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
     left: 0;
     width: 300px !important;
 }
+
+
+/* ngx-datatable.material */
+.datatable-row-wrapper {    
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.datatable-row-wrapper:last-child {    
+    border-bottom: none;
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active, .ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group, .ngx-datatable.material.multi-selection .datatable-body-row.active, .ngx-datatable.material.multi-selection .datatable-body-row.active .datatable-row-group, .ngx-datatable.material.multi-click-selection .datatable-body-row.active, .ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group {
+    background-color: #E91E63 !important;
+    color: #fff !important;
+}
+
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
+    color: inherit !important;
+}

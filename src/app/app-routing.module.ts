@@ -10,7 +10,6 @@ import { LoginComponent } from './login/login.component';
 import { UserFormComponent } from './pages/users/user-form/user-form.component';
 import { ClientsFormComponent } from './pages/clients/clients-form/clients-form.component';
 import { ClientListComponent } from './pages/clients/client-list/client-list.component';
-import { ServerPagingComponent } from './pages/pagination/paging-server.component';
 
 import { AuthGuard } from './_guards/auth.guard';
 import { IsLoggedIn } from './_guards/is-logged-in.guard';
@@ -29,12 +28,11 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home',  component: HomeComponent },
-      { path: 'user',  component: UserFormComponent },
-      { path: 'client', redirectTo: 'client/list', pathMatch: 'full' },
-      { path: 'client/form',  component: ClientsFormComponent },
-      { path: 'client/list',  component: ClientListComponent },
-      { path: 'news',  component: NewsComponent },
-      { path: 'paginate',  component: ServerPagingComponent },
+      { path: 'user',  component: UserFormComponent },      
+      { path: 'clients',  component: ClientListComponent, pathMatch: 'full' },
+      { path: 'clients/new',  component: ClientsFormComponent },
+      { path: 'clients/:id',  component: ClientsFormComponent },
+      { path: 'news',  component: NewsComponent },      
       { path: 'demo',  component: DemoComponent },
     ]
   },

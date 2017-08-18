@@ -6,30 +6,36 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthenticationService {
-  constructor(private http: Http, private router: Router) { }
-
-  private authUrl = 'http://apiv2.gn7logistic.com:3000';
-
-  login(username: string, password: string) {
-    let data = {
-        correo: username,
-        contrasena: password
-    }
+    private authUrl = 'http://192.168.1.210:8080/api/v1';
+    private headers = new Headers({
+        'Content-Type': 'application/json'
+    });
     
-    return this.http.post(`${this.authUrl}/usuario/auth`, data)
-      .map((response: Response) => {
-        let body = response.json();
-        if (body.auth) {
-            localStorage.setItem('currentUser', JSON.stringify(body.data));
-        }
-        return body;
-      });
-  }
+    constructor(private http: Http, private router: Router) { }
 
-  logout() {
-      // remove user from local storage to log user out
+    login(username: string, password: string) {
+        let data = {
+            email: username,
+            password: password
+        }
+        
+        return this.http.post(`${this.authUrl}/login`, data, {headers: this.headers})
+        .map((response: Response) => {
+            let body = response.json();            
+            if (body.auth) {
+                localStorage.setItem('currentUser', JSON.stringify(body.data));
+            }
+            return body;
+        });
+    }
+
+    logout() {      
       localStorage.removeItem('currentUser');
       this.router.navigate(['/login']);
-  }
+    }
+
+    getApiToken() {
+        return 'Bearer ' + JSON.parse(localStorage.currentUser).api_token;
+    }
 
 }

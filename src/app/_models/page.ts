@@ -1,13 +1,27 @@
 /**
  * An object used to get page information from the server
  */
-export class Page {
+/*export class Page {
+
     //The number of elements in the page
-    size: number = 0;
+    per_page: number = 0;
     //The total number of elements
-    totalElements: number = 0;
+    total: number = 0;
     //The total number of pages
-    totalPages: number = 0;
+    last_page: number = 0;
     //The current page number
-    pageNumber: number = 0;
+    current_page: number = 0;
 }
+*/
+
+
+    export class Page {
+        //The number of elements in the page
+        size: number = 0;
+        //The total number of elements
+        totalElements: number = 0;
+        //The total number of pages
+        totalPages: number = 0;
+        //The current page number
+        pageNumber: number = 0;
+    }

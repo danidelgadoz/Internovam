@@ -1,6 +1,6 @@
 <app-toolbar class="large-toolbar">
   <div class="md-toolbar-tools">
-      <button class="icon" routerLink="/dashboard/client/list">
+      <button class="icon" routerLink="/dashboard/clients">
         <i class="material-icons light-soft">arrow_back</i>
       </button>
 
@@ -10,36 +10,40 @@
   </div>
 
   <div class="toolbar-section">
-    NEW CLIENT
+    {{ title }}
   </div>
 </app-toolbar>
 
 <section class="md-whiteframe-4dp">
-   <form [formGroup]="clientForm" (ngSubmit)="save()">     
-      <fieldset>
-          <div class="form-group row" [ngClass]="{'has-danger': clientForm.controls['first_name'].invalid && clientForm.controls['first_name'].touched}">
+  <div *ngIf="alert.active" class="alert alert-success" role="alert">
+    <strong>{{alert.title}}</strong> {{alert.message}}
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="client.id ? update() : save()">
+      <fieldset [disabled]="alert.active">
+          <div class="form-group row" [ngClass]="{'has-danger': form.controls['first_name'].invalid && form.controls['first_name'].touched}">
             <label for="first_name" class="col-2 col-form-label col-form-label-lg">First Name</label>
             <div class="col-10">
-              <input class="form-control form-control-lg form-control-danger" type="text" id="first_name" formControlName="first_name">              
-              <div *ngIf="clientForm.controls['first_name'].touched && clientForm.controls['first_name'].hasError('required')" class="form-control-feedback">
+              <input class="form-control form-control-lg" type="text" id="first_name" [(ngModel)]="client.first_name" formControlName="first_name">              
+              <div *ngIf="form.controls['first_name'].touched && form.controls['first_name'].hasError('required')" class="form-control-feedback">
                 Required field
               </div>
             </div>
           </div>
-          <div class="form-group row" [ngClass]="{'has-danger': clientForm.controls['last_name'].invalid && clientForm.controls['last_name'].touched}">
+          <div class="form-group row" [ngClass]="{'has-danger': form.controls['last_name'].invalid && form.controls['last_name'].touched}">
             <label for="last_name" class="col-2 col-form-label col-form-label-lg">Last Name</label>
             <div class="col-10">
-              <input class="form-control form-control-lg form-control-danger" type="text" id="last_name" formControlName="last_name">
-              <div *ngIf="clientForm.controls['last_name'].touched && clientForm.controls['last_name'].hasError('required')" class="form-control-feedback">
+              <input class="form-control form-control-lg" type="text" id="last_name" [(ngModel)]="client.last_name" formControlName="last_name">
+              <div *ngIf="form.controls['last_name'].touched && form.controls['last_name'].hasError('required')" class="form-control-feedback">
                 Required field
               </div>  
             </div>
           </div>
-          <div class="form-group row" [ngClass]="{'has-danger': clientForm.controls['email'].invalid && clientForm.controls['email'].touched}">
+          <div class="form-group row" [ngClass]="{'has-danger': form.controls['email'].invalid && form.controls['email'].touched}">
             <label for="email" class="col-2 col-form-label col-form-label-lg">Email</label>
             <div class="col-10">
-              <input class="form-control form-control-lg form-control-danger" type="email" id="email" formControlName="email">
-              <div *ngIf="clientForm.controls['email'].touched && clientForm.controls['email'].hasError('pattern')" class="form-control-feedback">
+              <input class="form-control form-control-lg" type="email" id="email" [(ngModel)]="client.email" formControlName="email">
+              <div *ngIf="form.controls['email'].touched && form.controls['email'].hasError('pattern')" class="form-control-feedback">
                 Invalid Email
               </div>
             </div>
@@ -47,31 +51,40 @@
           <div class="form-group row">
             <label for="trademark" class="col-2 col-form-label col-form-label-lg">Trademark</label>
             <div class="col-10">
-              <input class="form-control form-control-lg" type="text" id="trademark" formControlName="trademark">
+              <input class="form-control form-control-lg" type="text" id="trademark" [(ngModel)]="client.trademark" formControlName="trademark">
             </div>
           </div>
           <div class="form-group row">
             <label for="img_trademark" class="col-2 col-form-label col-form-label-lg">Img trademark</label>
             <div class="col-10">
-              <input class="form-control form-control-lg" type="text" id="img_trademark" formControlName="img_trademark">
+              <input class="form-control form-control-lg" type="text" id="img_trademark" [(ngModel)]="client.img_trademark" formControlName="img_trademark">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="image" class="col-2 col-form-label col-form-label-lg">Image</label>
+            <div class="col-10">
+              <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" (change)="imagesPreview($event)">
+              <img *ngIf="imageFile" [src]="imageFile.link">
+              <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
             </div>
           </div>
           <div class="form-group row">
             <label for="phone" class="col-2 col-form-label col-form-label-lg">Telephone</label>
             <div class="col-10">
-              <input class="form-control form-control-lg" type="tel" id="phone" formControlName="phone">
+              <input class="form-control form-control-lg" type="tel" id="phone" [(ngModel)]="client.phone" formControlName="phone">
             </div>
           </div>
           <div class="form-group row">
             <label for="mobile_phone" class="col-2 col-form-label col-form-label-lg">Cellphone</label>
             <div class="col-10">
-              <input class="form-control form-control-lg" type="tel" id="mobile_phone" formControlName="mobile_phone">
+              <input class="form-control form-control-lg" type="tel" id="mobile_phone" [(ngModel)]="client.mobile_phone" formControlName="mobile_phone">
             </div>
           </div>          
 
           <div class="form-group row">
             <div class="offset-sm-2 col-sm-10">
-              <button type="submit" [disabled]="!clientForm.valid" class="btn btn-primary">Sign in</button>
+              <button type="button" class="btn default" (click)="reset()">Reset</button>
+              <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Sign in</button>
             </div>
           </div>
       </fieldset>                                                    

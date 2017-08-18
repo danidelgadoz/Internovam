@@ -45,6 +45,10 @@ button.icon {
     cursor: pointer;
     outline: none;
 }
+.form-group img {
+    height: 128px;
+    margin-top: 8px;
+}
 
 /* input.ng-invalid.ng-touched {
     border-left: 2px solid red;

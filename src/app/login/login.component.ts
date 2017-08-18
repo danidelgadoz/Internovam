@@ -10,8 +10,8 @@ import { AuthenticationService } from '../_services/authentication.service';
 })
 export class LoginComponent implements OnInit {  
   model: any = {
-    email: "admin@gn7app.com",
-    password: "admin$"
+    email: "frontend@internovam.com",
+    password: "123456"
   };
   loading = false;
   message : string;
@@ -21,21 +21,21 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) {}
 
-  ngOnInit() {    
+  ngOnInit() {
   }
 
-  loginUser(value : any) {
+  loginUser(value : any ) {
     this.loading = true;
     this.authenticationService.login(this.model.email, this.model.password)
       .subscribe(
-        data => {
+        data => {          
           if (data.auth)
             this.router.navigate(['/dashboard']);
           else
-            this.message = data.data;
+            this.message = data.message;
         },
         error => {
-          console.error(error);          
+          console.error(error);
         }
       );
   }
