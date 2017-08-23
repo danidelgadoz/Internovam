@@ -55,8 +55,8 @@ export class ClientsFormComponent implements OnInit {
         return this.clientService.show(+params.get('id'))
       })
       .subscribe(data => {
-          console.log(data)
-          this.client = data.data;          
+          console.log(data);
+          this.client = data;
       });
   }
 
@@ -76,24 +76,11 @@ export class ClientsFormComponent implements OnInit {
     }
   }
 
-  save(): void {
-    console.log(this.form.value);
-    
-    /*let formData = new FormData();
-    formData.append('imageFile', this.imageFile.file);
-    formData.append('first_name', this.form.value.first_name);
-    formData.append('last_name', this.form.value.last_name);
-    formData.append('email', this.form.value.email);
-    formData.append('trademark', this.form.value.trademark);
-    formData.append('img_trademark', this.form.value.img_trademark);
-    formData.append('phone', this.form.value.phone);
-    formData.append('mobile_phone', this.form.value.mobile_phone);
-    console.log(formData);*/
-
-    document.querySelectorAll('[loadingBackdrop]')[0].classList.toggle('active');
-    this.clientService.create(this.form.value)
-      .subscribe(data => {
-        this.alert = { 
+  save(): void {    
+    document.querySelectorAll('[loadingBackdrop]')[0].classList.toggle('active');    
+    this.clientService.create(this.getClientAsFormData(this.form.value))//this.form.value
+      .subscribe(data => {        
+        this.alert = {
           active: true,
           title: 'Client registered!',
           message: 'You successfully read this important alert message.'
@@ -103,12 +90,10 @@ export class ClientsFormComponent implements OnInit {
   }
 
   update(): void {
-    console.log('updating...');
     document.querySelectorAll('[loadingBackdrop]')[0].classList.toggle('active');    
     
     let data = this.form.value;
-    data.id = this.client.id;
-    console.log(data);
+    data.id = this.client.id;    
     this.clientService.update(this.form.value)
       .subscribe(data => {
         this.alert = {
@@ -124,5 +109,18 @@ export class ClientsFormComponent implements OnInit {
     this.form.reset();    
     this.alert = { active: false, title: '', message: ''};
   }
-    
+
+  getClientAsFormData(_clienteFormGroup): FormData {
+    let formData = new FormData();
+    formData.append('img_trademark', this.imageFile.file);
+    formData.append('first_name', _clienteFormGroup.first_name);
+    formData.append('last_name', _clienteFormGroup.last_name);
+    formData.append('email', _clienteFormGroup.email);
+    formData.append('trademark', _clienteFormGroup.trademark);
+    formData.append('img_trademark', _clienteFormGroup.img_trademark);
+    formData.append('phone', _clienteFormGroup.phone);
+    formData.append('mobile_phone', _clienteFormGroup.mobile_phone);
+    return formData;
+  }
+
 }

@@ -34,25 +34,24 @@ export class ClientService {
     });
   }
 
-  show(id: number){
-    return this.http.get(`${this.clientUrl}/${id}`, {headers: this.headers})
-      .map(res => res.json());
+  show(id: number) : Observable<Client>{
+    return this.httpc.get(`${this.clientUrl}/${id}`)
+      .map((res: any) => res.data);
   }
 
-  create(_client: Client): Observable<Client> {
-    return this.http
-        .post(this.clientUrl, _client, {headers: this.headers})
-        .map((res:Response) => {
-          return res.json();
-        });
+  create(_client): Observable<Client> {
+    return this.httpc
+      .post(this.clientUrl, _client)
+      .map((res:any) => {
+        return res.data;
+      });
   }
 
-  update(_client): Observable<Client> {
-    console.log(_client);
-    return this.http
-        .put(`${this.clientUrl}/${_client.id}`, _client, {headers: this.headers})
-        .map((res:Response) => {
-          return res.json();
+  update(_client): Observable<Client> {    
+    return this.httpc
+        .put(`${this.clientUrl}/${_client.id}`, _client)
+        .map((res:any) => {
+          return res.data;
         });
-  }  
+  }
 }
