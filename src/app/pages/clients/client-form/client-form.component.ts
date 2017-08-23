@@ -12,18 +12,18 @@ export class Alert {
 };
 
 @Component({
-  selector: 'app-clients-form',
-  templateUrl: './clients-form.component.html',
-  styleUrls: ['./clients-form.component.css']
+  selector: 'app-client-form',
+  templateUrl: './client-form.component.html',
+  styleUrls: ['./client-form.component.css']
 })
-export class ClientsFormComponent implements OnInit {
+export class ClientFormComponent implements OnInit {
   form: FormGroup;
   title: string;
   client: Client = new Client();
 
-  imageFile : any;
+  imageFile : {link: string, file: any, name: string};
   alert: Alert = { active: false, title: '', message: ''};
-
+  
   constructor(
     formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -50,33 +50,23 @@ export class ClientsFormComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap
-      .switchMap((params: ParamMap) => {
-        this.title = params.get('id') ? 'Edit User' : 'New User';
-        return this.clientService.show(+params.get('id'))
+      .subscribe(params => {
+        var id = +params.get('id');
+        this.title = id ? 'Edit User' : 'New User';
+
+        if (!id)
+          return;
+
+        this.clientService.show(id)
+          .subscribe(data => {
+            this.client = data;
+            if(this.client.img_trademark)
+              this.imageFile = { link: this.client.img_trademark, file: null, name: null};                  
+          });
       })
-      .subscribe(data => {
-          console.log(data);
-          this.client = data;
-      });
-  }
+  }  
 
-  imagesPreview(event) {
-    if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = (_event:any) => {
-            this.imageFile = {
-                link: _event.target.result,
-                file: event.srcElement.files[0],
-                name: event.srcElement.files[0].name
-            };            
-        }
-
-        reader.readAsDataURL(event.target.files[0]);
-    }
-  }
-
-  save(): void {    
+  save(): void {
     document.querySelectorAll('[loadingBackdrop]')[0].classList.toggle('active');    
     this.clientService.create(this.getClientAsFormData(this.form.value))//this.form.value
       .subscribe(data => {        
@@ -94,11 +84,26 @@ export class ClientsFormComponent implements OnInit {
     
     let data = this.form.value;
     data.id = this.client.id;    
-    this.clientService.update(this.form.value)
+    this.clientService.update(this.client.id, this.getClientAsFormData(this.form.value))
       .subscribe(data => {
         this.alert = {
           active: true,
           title: 'Client updated!',
+          message: 'You successfully read this important alert message.'
+        };
+        document.querySelectorAll('[loadingBackdrop]')[0].classList.toggle('active');
+      });
+  }
+  
+  delete(): void {
+    console.log("deleting..");
+    document.querySelectorAll('[loadingBackdrop]')[0].classList.toggle('active');    
+
+    this.clientService.delete(this.client.id)
+      .subscribe(data => {
+        this.alert = {
+          active: true,
+          title: 'Client deleted!',
           message: 'You successfully read this important alert message.'
         };
         document.querySelectorAll('[loadingBackdrop]')[0].classList.toggle('active');
@@ -121,6 +126,22 @@ export class ClientsFormComponent implements OnInit {
     formData.append('phone', _clienteFormGroup.phone);
     formData.append('mobile_phone', _clienteFormGroup.mobile_phone);
     return formData;
+  }
+
+  imagesPreview(event) {
+    if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = (_event:any) => {
+            this.imageFile = {
+              link: _event.target.result,
+              file: event.srcElement.files[0],
+              name: event.srcElement.files[0].name
+            };            
+        }
+
+        reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
 }

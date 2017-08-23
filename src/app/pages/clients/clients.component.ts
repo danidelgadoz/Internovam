@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-import {Page} from "../../../_models/page";
-import {Client} from "../../../_models/client";
-import { ClientService } from '../../../_services/client.service';
+import {Page} from "../../_models/page";
+import {Client} from "../../_models/client";
+import { ClientService } from '../../_services/client.service';
 
 @Component({
-  selector: 'app-client-list',
-  templateUrl: './client-list.component.html',
-  styleUrls: ['./client-list.component.css']
+  selector: 'app-client',
+  templateUrl: './clients.component.html',
+  styleUrls: ['./clients.component.css']
 })
-export class ClientListComponent implements OnInit {
+export class ClientsComponent implements OnInit {
   page = new Page();
   rows = new Array<any>();
   
@@ -37,11 +37,11 @@ export class ClientListComponent implements OnInit {
    * @param page The page to select
    */
   setPage(pageInfo){
+    console.log(pageInfo)
     this.page.pageNumber = pageInfo.offset;
     this.page.size = pageInfo.limit ? pageInfo.limit : this.page.size;    
 
-    this.clientService.list(this.page).subscribe(pagedData => {
-      console.log(pagedData)
+    this.clientService.list(this.page).subscribe(pagedData => {      
       this.page = pagedData.page;
       this.rows = pagedData.data;
     });
@@ -65,6 +65,17 @@ export class ClientListComponent implements OnInit {
 
   onActivate(event) {
     // console.log('Activate Event', event);
+  }
+
+  delete(): void {
+    console.log("deleting..");
+    document.querySelectorAll('[loadingBackdrop]')[0].classList.toggle('active');    
+
+    this.clientService.delete(this.selected[0].id)
+      .subscribe(data => {
+        this.setPage({offset:0});
+        document.querySelectorAll('[loadingBackdrop]')[0].classList.toggle('active');
+      });
   }
 
 }

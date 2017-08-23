@@ -12,29 +12,29 @@ import { AuthenticationService, ClientService } from './_services/index';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { ToolbarComponent } from './dashboard/toolbar/toolbar.component';
+import { SidenavComponent } from './dashboard/sidenav/sidenav.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NewsComponent } from './pages/news/news.component';
 import { DemoComponent } from './pages/demo/demo.component';
 import { LoginComponent } from './login/login.component';
 import { UserFormComponent } from './pages/users/user-form/user-form.component';
-import { ClientsFormComponent } from './pages/clients/clients-form/clients-form.component';
-import { ClientListComponent } from './pages/clients/client-list/client-list.component';
+import { ClientFormComponent } from './pages/clients/client-form/client-form.component';
+import { ClientsComponent } from './pages/clients/clients.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+    DashboardComponent,
     ToolbarComponent,
     SidenavComponent,
-    HomeComponent,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+    HomeComponent,
     NewsComponent,
     DemoComponent,
     LoginComponent,
     UserFormComponent,
-    ClientsFormComponent,
-    ClientListComponent    
+    ClientFormComponent,
+    ClientsComponent
   ],
   imports: [
     AppRoutingModule,

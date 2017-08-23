@@ -12,11 +12,7 @@ import {Page} from "../_models/page";
 
 @Injectable()
 export class ClientService {
-  private clientUrl = 'http://192.168.1.210:8080/api/v1/clients';
-  private headers = new Headers({
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + JSON.parse(localStorage.currentUser).api_token
-  });
+  private clientUrl = 'http://192.168.1.210:8080/api/v1/clients';  
 
   constructor(private http: Http, private httpc: HttpClient) { }
 
@@ -34,7 +30,7 @@ export class ClientService {
     });
   }
 
-  show(id: number) : Observable<Client>{
+  show(id: number) : Observable<Client>{    
     return this.httpc.get(`${this.clientUrl}/${id}`)
       .map((res: any) => res.data);
   }
@@ -47,11 +43,16 @@ export class ClientService {
       });
   }
 
-  update(_client): Observable<Client> {    
+  update(_id, _client): Observable<Client> {    
     return this.httpc
-        .put(`${this.clientUrl}/${_client.id}`, _client)
+        .put(`${this.clientUrl}/${_id}`, _client)
         .map((res:any) => {
           return res.data;
         });
+  }
+
+  delete(id: number) : Observable<Client>{    
+    return this.httpc.delete(`${this.clientUrl}/${id}`)
+      .map((res: any) => res.data);
   }
 }

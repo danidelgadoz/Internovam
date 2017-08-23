@@ -7,10 +7,11 @@
       
       <button type="button" class="btn btn-secondary btn-lg" routerLink="new">NEW</button>
       <button *ngIf="selected[0]" type="button" class="btn btn-secondary btn-lg" [routerLink]="['../clients', selected[0].id]">EDIT</button>
+      <button *ngIf="selected[0]" type="button" class="btn btn-secondary btn-lg" (click)="deleteConfirmation=true">DELETE</button>      
   </div>
 </app-toolbar>
 
-<section>  
+<section>
       <ngx-datatable 
         class="material" 
         [rows]="rows"
@@ -31,3 +32,20 @@
         (select)='onSelect($event)'>
       </ngx-datatable>
 </section>
+
+<div dialog [ngClass]="{'active': deleteConfirmation}">
+  <div class="dialog">
+    <div class="title">
+      ¿Esta seguro de eliminar cliente?
+    </div>
+
+    <div class="content">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, architecto iusto eius esse iure, tempora reprehenderit velit, cumque nulla officia dicta! Temporibus aspernatur, natus vitae.
+    </div>
+
+    <div class="footer">
+      <button type="button" class="btn btn-lg secondary" (click)="deleteConfirmation=false">CANCELAR</button>
+      <button type="button" class="btn btn-lg btn-primary" (click)="deleteConfirmation=false; delete()">ACEPTAR</button>
+    </div>
+  </div>
+</div>
