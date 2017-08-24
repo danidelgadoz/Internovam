@@ -10,8 +10,11 @@ import { ClientService } from '../../_services/client.service';
   styleUrls: ['./clients.component.css']
 })
 export class ClientsComponent implements OnInit {
+  deleteConfirmation = false;  
   page = new Page();
   rows = new Array<any>();
+  selected = [];
+  isLoading: boolean;
   
   columns = [
     { prop: 'first_name' },
@@ -20,8 +23,7 @@ export class ClientsComponent implements OnInit {
     { prop: 'mobile_phone' },
     { prop: 'phone' },
     { prop: 'trademark' }
-  ];
-  selected = [];
+  ];  
 
   constructor(private clientService: ClientService) {
     this.page.pageNumber = 0;
@@ -32,31 +34,17 @@ export class ClientsComponent implements OnInit {
     this.setPage({ offset: 0 });
   }
 
-  /**
-   * Populate the table with new data based on the page number
-   * @param page The page to select
-   */
-  setPage(pageInfo){
-    console.log(pageInfo)
+  setPage(pageInfo){    
     this.page.pageNumber = pageInfo.offset;
     this.page.size = pageInfo.limit ? pageInfo.limit : this.page.size;    
-
-    this.clientService.list(this.page).subscribe(pagedData => {      
+    
+    this.isLoading = true;
+    this.clientService.list(this.page).subscribe(pagedData => {
+      this.isLoading = false;
       this.page = pagedData.page;
       this.rows = pagedData.data;
     });
   }
-
-  /*setPage(pageInfo){    
-    this.page.pageNumber = pageInfo.offset;
-    this.page.size = pageInfo.limit ? pageInfo.limit : this.page.size;    
-
-    this.clientService.list(this.page).subscribe( (response:any) => {      
-      this.page.totalElements = response.data.total;
-      this.page.totalPages = response.data.last_page;
-      this.rows = response.data.data;
-    });
-  }*/
 
   onSelect({ selected }) {
     console.log('Select Event', selected);

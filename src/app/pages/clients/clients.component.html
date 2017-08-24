@@ -15,9 +15,10 @@
       <ngx-datatable 
         class="material" 
         [rows]="rows"
-        [loadingIndicator]="loadingIndicator"
+        [loadingIndicator]="isLoading"
         [columns]="columns"
         [columnMode]="'force'"
+        [scrollbarH]="true"
         [headerHeight]="50"
         [footerHeight]="50"
         [rowHeight]="'auto'"

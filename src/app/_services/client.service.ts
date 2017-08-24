@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
-import {Observable} from 'rxjs/Rx';
 import { HttpClient } from '@angular/common/http';
-
+import {Observable} from 'rxjs/Rx';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -14,7 +12,7 @@ import {Page} from "../_models/page";
 export class ClientService {
   private clientUrl = 'http://192.168.1.210:8080/api/v1/clients';  
 
-  constructor(private http: Http, private httpc: HttpClient) { }
+  constructor(private httpc: HttpClient) { }
 
   list(page: Page): Observable<PagedData<Client>> {
     let listUrl = `${this.clientUrl}/?page=${page.pageNumber+1}&limit=${page.size}`;
