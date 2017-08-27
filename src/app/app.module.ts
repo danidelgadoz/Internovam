@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { UserFormComponent } from './pages/users/user-form/user-form.component';
 import { ClientFormComponent } from './pages/clients/client-form/client-form.component';
 import { ClientsComponent } from './pages/clients/clients.component';
+import { Error404Component } from './_components/error-404/error-404.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ClientsComponent } from './pages/clients/clients.component';
     LoginComponent,
     UserFormComponent,
     ClientFormComponent,
-    ClientsComponent
+    ClientsComponent,
+    Error404Component
   ],
   imports: [
     AppRoutingModule,

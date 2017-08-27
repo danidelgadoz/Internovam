@@ -5,7 +5,7 @@
 
       <div class="flex"></div>      
       
-      <button type="button" class="btn btn-secondary btn-lg" routerLink="new">NEW</button>
+      <button type="button" class="btn btn-secondary btn-lg" routerLink="./new">NEW</button>
       <button *ngIf="selected[0]" type="button" class="btn btn-secondary btn-lg" [routerLink]="['../clients', selected[0].id]">EDIT</button>
       <button *ngIf="selected[0]" type="button" class="btn btn-secondary btn-lg" (click)="deleteConfirmation=true">DELETE</button>      
   </div>
