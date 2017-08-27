@@ -1,14 +1,8 @@
-app-toolbar{
-    background-image: url('http://apiv2.gn7logistic.com:3000/images/background/header-bg.png') !important;
-    background-size: cover !important;
-    background-color: #EC407A !important;
-}
-
 section {
     padding: 0 32px;
 }
 
 ngx-datatable {
-    margin-top: -50px !important;    
+    margin-top: -50px !important;
     z-index: 999;
 }

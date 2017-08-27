@@ -1,24 +1,6 @@
-app-toolbar{
-    background-image: url('http://apiv2.gn7logistic.com:3000/images/background/header-bg.png') !important;
-    background-size: cover !important;
-    background-color: #EC407A !important;
-
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-app-toolbar .md-toolbar-tools {
-    max-height: initial;
-    height: initial;
-    box-sizing: border-box;
-    display: flex;
-    flex: 1;
-}
-
 app-toolbar .toolbar-section{
     background-color: rgb(255,255,255);
+    color: #666;
     padding-left: 32px;
     font-size: 16px;
     line-height: 44px;

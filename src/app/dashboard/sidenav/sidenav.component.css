@@ -18,8 +18,6 @@
 
 :host.md-locked-open, :host.md-locked-open.md-closed{
     position: static;
-    display: -webkit-box;
-    display: -webkit-flex;
     display: flex;
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
@@ -34,15 +32,13 @@
 
 .header {
     color: rgba(255,255,255,0.87);
-    background-color: #3367D6;
     background-color: #757575;
 }
 
 .header .header-content{
     height: 160px;
-    background-color: #4285F4;
-    /* background-image: url(https://cdn.pixabay.com/photo/2016/09/08/21/20/transparent-1655599_960_720.png); */
-    background-image: url(http://fuse-angular-material.withinpixels.com/assets/images/backgrounds/august.jpg);
+    background-color: #4285F4;     
+    background-image: url(http://images2.internovam.com/nosotros_img4.jpg);
     background-size: 300px 160px;
     background-repeat: no-repeat;
     padding: 0 0 16px 16px;
@@ -55,14 +51,17 @@
 }
 
 .header .header-content .md-avatar {
+    display: none;
     border-radius: 50%;
     box-sizing: content-box;
 }
 
-.header .header-footer{
-    min-height: 56px;
+.header .header-footer{    
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    min-height: 56px;
     padding: 8px 16px;
     font-size: 12px;
 }
@@ -132,10 +131,10 @@ nav dl div.submenu dd a {
 }
 
 nav dl dt.active, nav dl div.submenu dd a.active {    
-    color: #E91E63;
+    color: #D50000;
     font-weight: 700;
 }
 
 nav dl.selected-left-border{
-    border-left: 2px solid #E91E63;
+    border-left: 2px solid #D50000;
 }
