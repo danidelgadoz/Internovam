@@ -37,6 +37,15 @@ a {
     text-decoration: none;
 }
 
+fieldset {
+    -webkit-margin-start: none;
+    -webkit-margin-end: none;
+    -webkit-padding-before: none;
+    -webkit-padding-start: none;
+    -webkit-padding-end: none;
+    -webkit-padding-after: none;
+    min-width: none;
+}
 
 
 .backdrop-state app-sidenav {

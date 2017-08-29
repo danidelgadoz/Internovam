@@ -17,12 +17,12 @@ export class ClientsComponent implements OnInit {
   isLoading: boolean;
   
   columns = [
-    { prop: 'first_name' },
-    { prop: 'email' },
-    { prop: 'last_name' },
-    { prop: 'mobile_phone' },
-    { prop: 'phone' },
-    { prop: 'trademark' }
+    { prop: 'first_name', name: 'Firstname' },
+    { prop: 'last_name', name: 'Lastname' },
+    { prop: 'email', name: 'Email' },
+    { prop: 'mobile_phone', name: 'Mobile Phone' },
+    { prop: 'phone', name: 'Phone' },
+    { prop: 'trademark', name: 'Trademark' }
   ];  
 
   constructor(private clientService: ClientService) {

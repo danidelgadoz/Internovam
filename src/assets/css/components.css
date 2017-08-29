@@ -159,3 +159,11 @@ div[loadingBackdrop].active {
 .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
     color: inherit !important;
 }
+
+
+/****************************************************
+*************** BOOTSTRAP INPUT COLOR ***************
+****************************************************/
+.form-control {
+    background-color: rgb(255, 250, 250);
+}
