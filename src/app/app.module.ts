@@ -22,6 +22,8 @@ import { UserFormComponent } from './pages/users/user-form/user-form.component';
 import { ClientFormComponent } from './pages/clients/client-form/client-form.component';
 import { ClientsComponent } from './pages/clients/clients.component';
 import { Error404Component } from './_components/error-404/error-404.component';
+import { ButtonComponent } from './_components/button/button.component';
+import { MenuComponent } from './_components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { Error404Component } from './_components/error-404/error-404.component';
     UserFormComponent,
     ClientFormComponent,
     ClientsComponent,
-    Error404Component
+    Error404Component,    
+    ButtonComponent, MenuComponent
   ],
   imports: [
     AppRoutingModule,

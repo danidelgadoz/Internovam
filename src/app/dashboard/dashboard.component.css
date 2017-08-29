@@ -4,7 +4,6 @@
     flex-direction: row;
 }
 app-sidenav {
-    -webkit-transition: width 0.35s; /* For Safari 3.1 to 6.0 */
     transition: width 0.35s;
     z-index: 3000;
 }
@@ -50,7 +49,11 @@ div[backdrop] {
 
 .wrapper app-toolbar {
     background: #f6f6f6 !important;
-    color: #666 !important;
+    color: #666 !important;    
+}
+
+.wrapper app-toolbar .md-toolbar-tools {    
+    padding-right: 0;
 }
 
 .wrapper app-toolbar button.side-nav-toggle{
@@ -108,4 +111,8 @@ div[backdrop] {
     .wrapper app-toolbar button.side-nav-toggle {
         display: initial;
     }
+}
+
+app-menu {
+    height: 100%
 }

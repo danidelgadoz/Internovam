@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     setTimeout(()=>{ 
       this.init();
+      this.toogleMenu();
     }, 250);
   }
 
@@ -32,6 +33,20 @@ export class DashboardComponent implements OnInit {
   logOut() {
     console.log("serrando session...");
     this.authenticationService.logout();
+  }
+
+  toogleMenu() {
+    document.addEventListener("click", function(e) {
+      let x : any = e.target;
+      let menu = x.closest("app-menu");      
+
+      if (menu) {
+        menu.getElementsByClassName('app-menu-content')[0].style.display = "block";
+      } else {
+        let x :any = document.getElementById('dashboard-menu').getElementsByClassName('app-menu-content')[0];
+        x.style.display = "none";
+      }
+    });
   }
 
 }

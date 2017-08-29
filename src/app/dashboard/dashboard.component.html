@@ -12,7 +12,20 @@
 
                 <div class="flex"></div>
                 
-                <button class="btn btn-outline-secondary btn-lg" (click)="logOut()">SALIR</button>
+                <app-menu id="dashboard-menu">
+                    <div class="app-menu-toogle">
+                        <app-button>
+                            <img src="http://fuse-angular-material.withinpixels.com/assets/images/avatars/profile.jpg" alt="User Image">
+                            <span>Administrador</span>
+                        </app-button>
+                    </div>
+
+                    <div class="app-menu-content">
+                        <a class="menu-item" (click)="logOut()">Salir</a>                        
+                    </div>
+                </app-menu>
+
+                <app-button class="button-toolbar"><i class="material-icons" title="Show navigation">settings</i></app-button>
             </div>
         </app-toolbar>
 
